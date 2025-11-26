@@ -1,0 +1,30 @@
+{
+  "tests": [
+    {
+      "name": "Test valid query",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "query": "Привет, как дела?"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "answer": "string"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Test empty query",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "query": ""
+      },
+      "expectedStatus": 400,
+      "expectedBody": {
+        "error": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

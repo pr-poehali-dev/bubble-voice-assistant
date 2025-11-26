@@ -108,17 +108,38 @@ const Index = () => {
 
     setResponse('Обрабатываю запрос...');
 
-    const mockResponses = [
-      `${settings.name} слушает вас. Вы спросили: "${query}". Я умный помощник и готов помочь!`,
-      `Понял ваш запрос: "${query}". Могу помочь с поиском информации, управлением приложениями или ответить на вопросы.`,
-      `Отлично! "${query}" - интересный вопрос. Для полноценной работы потребуется интеграция с ChatGPT API.`
-    ];
+    try {
+      const response = await fetch('https://functions.poehali.dev/852823e0-77d7-48d3-bcd3-2230af24930c', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query })
+      });
 
-    setTimeout(() => {
-      const randomResponse = mockResponses[Math.floor(Math.random() * mockResponses.length)];
-      setResponse(randomResponse);
-      speakResponse(randomResponse);
-    }, 800);
+      const data = await response.json();
+
+      if (response.ok && data.answer) {
+        setResponse(data.answer);
+        speakResponse(data.answer);
+      } else {
+        const errorMsg = data.error || 'Произошла ошибка при обработке запроса';
+        setResponse(errorMsg);
+        toast({
+          title: "Ошибка",
+          description: errorMsg,
+          variant: "destructive"
+        });
+      }
+    } catch (error) {
+      const errorMsg = 'Не удалось связаться с сервером. Проверьте подключение.';
+      setResponse(errorMsg);
+      toast({
+        title: "Ошибка сети",
+        description: errorMsg,
+        variant: "destructive"
+      });
+    }
   };
 
   const speakResponse = (text: string) => {
