@@ -284,30 +284,51 @@ const Index = () => {
             <button
               onClick={startListening}
               disabled={isListening}
-              className="relative w-64 h-64 rounded-full bg-gradient-to-br from-primary via-secondary to-accent shadow-2xl shadow-primary/50 hover:shadow-primary/70 transition-all duration-300 hover:scale-105 disabled:opacity-70 group overflow-hidden"
+              className="relative w-72 h-72 rounded-full transition-all duration-300 hover:scale-105 disabled:opacity-70 group"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent animate-pulse-bubble"></div>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#9b87f5] via-[#D946EF] to-[#0EA5E9] opacity-80 blur-md"></div>
               
-              <div className="absolute inset-4 rounded-full bg-gradient-to-br from-primary/40 via-secondary/40 to-accent/40 backdrop-blur-xl border border-white/20"></div>
+              <div className="absolute inset-2 rounded-full bg-gradient-to-br from-[#9b87f5]/90 via-[#D946EF]/90 to-[#0EA5E9]/90"></div>
+              
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/40 via-white/5 to-transparent"></div>
+              
+              <div className="absolute top-8 left-8 w-24 h-24 rounded-full bg-white/50 blur-2xl"></div>
+              
+              <div className="absolute top-12 right-16 w-16 h-16 rounded-full bg-white/30 blur-xl"></div>
+              
+              <div className="absolute bottom-16 left-20 w-20 h-20 rounded-full bg-[#0EA5E9]/40 blur-xl"></div>
+              
+              <div className="absolute inset-0 rounded-full" style={{
+                background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 50%)',
+                mixBlendMode: 'overlay'
+              }}></div>
+              
+              <div className="absolute inset-0 rounded-full animate-pulse-bubble" style={{
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%, rgba(0,0,0,0.1) 100%)'
+              }}></div>
+              
+              <div className="absolute inset-0 rounded-full border-2 border-white/20"></div>
               
               <div className="relative z-10 flex items-center justify-center h-full">
                 {isListening ? (
                   <div className="space-y-2">
-                    <Icon name="Mic" size={80} className="text-white animate-pulse" />
+                    <Icon name="Mic" size={80} className="text-white drop-shadow-lg animate-pulse" />
                     <div className="flex gap-1 justify-center">
                       {[...Array(3)].map((_, i) => (
                         <div
                           key={i}
-                          className="w-2 h-8 bg-white rounded-full animate-pulse"
+                          className="w-2 h-8 bg-white rounded-full animate-pulse drop-shadow-lg"
                           style={{ animationDelay: `${i * 0.15}s` }}
                         />
                       ))}
                     </div>
                   </div>
                 ) : (
-                  <Icon name="Mic" size={80} className="text-white group-hover:scale-110 transition-transform" />
+                  <Icon name="Mic" size={80} className="text-white drop-shadow-lg group-hover:scale-110 transition-transform" />
                 )}
               </div>
+              
+              <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 blur-2xl -z-10 group-hover:blur-3xl transition-all"></div>
             </button>
           </div>
         </div>
