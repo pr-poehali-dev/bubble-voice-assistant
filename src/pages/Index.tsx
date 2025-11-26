@@ -109,7 +109,7 @@ const Index = () => {
     setResponse('Обрабатываю запрос...');
 
     try {
-      const response = await fetch('https://functions.poehali.dev/b559be5c-d490-4541-a7ff-4539d99ed1e3', {
+      const response = await fetch('https://functions.poehali.dev/4c06a602-cb35-4915-8dd2-c90036221c4e', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
